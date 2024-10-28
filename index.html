@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P2-M09</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P2-M09</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0 -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision_materiales')">
+        <div class="title">📚 Actividad 0: Revisión de Misión ⏰ Tiempo: No especificado</div>
+        <div class="subtitle">Revisar la disponibilidad de materiales (Magic Boards).</div>
+    </div>
+    <div id="revision_materiales" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1:</strong> Proyectar Diapositiva 1: Revisar la disponibilidad de materiales (Magic Boards).</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> No hay diálogo para los estudiantes, esta actividad es interna del profesor.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 1 -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo_ritual')">
+        <div class="title">🎉 Actividad 1: Saludo y Ritual Gnius Club ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Saludar a los estudiantes y presentar el tema del día.</div>
+    </div>
+    <div id="saludo_ritual" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 2: Saludar a los estudiantes por su nombre y presentar el tema del día.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Hola Genios! ¿Listos para aprender algo increíble hoy? Hoy vamos a ver cómo la programación puede cambiar el mundo a través de conceptos básicos que aprenderemos juntos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 3: Pedir que elijan una posición para indicar su estado de ánimo.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Si están emocionados por aprender algo nuevo, ¡levanten los brazos! Si necesitan un poco más de energía, crucen los brazos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0,5 minutos):</strong> Proyectar Diapositiva 4: Guiar a los estudiantes en el ritual de agradecimiento.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora, vamos a juntar nuestras manos y dar las gracias por lo que vamos a aprender hoy. ¡Gracias por estar aquí, Genios! Hoy va a ser un gran día de aprendizaje y diversión."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 5: Explicar los tres objetivos del día.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy tenemos tres grandes objetivos: 1) Aprender conceptos básicos de programación. 2) Explorar cómo la programación se usa en cosas cotidianas. 3) Realizar un reto que nos ayudará a escribir nuestro primer conjunto de instrucciones de programación."</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 2 -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('innovacion_dia')">
+        <div class="title">💡 Actividad 2: Innovación del Día ⏰ Tiempo: 4,5 minutos</div>
+        <div class="subtitle">Explicar la innovación de los semáforos inteligentes y su relación con la programación.</div>
+    </div>
+    <div id="innovacion_dia" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 6: Explicar brevemente el impacto de la programación en los semáforos inteligentes.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Genios, hoy veremos una innovación increíble: los semáforos inteligentes. ¡Imagínense! Los semáforos utilizan programación para regular el tráfico y reducir los accidentes. ¡Así es como la programación impacta nuestra vida cotidiana!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (2 minutos):</strong> Proyectar Diapositiva 7: Reproducir un video de 1 minuto sobre los semáforos inteligentes.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a ver cómo estos semáforos inteligentes usan programación para cambiar las luces de acuerdo al flujo de tráfico. ¡Es fascinante ver cómo un código puede hacer que una ciudad funcione mejor!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (2 minutos):</strong> Proyectar Diapositiva 8: Hacer preguntas para que los estudiantes reflexionen sobre el uso de la programación en los semáforos y otros aspectos de su vida diaria.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¿Cómo creen que los semáforos inteligentes ayudan a mejorar nuestras ciudades? ¿Dónde más creen que se podría usar la programación para ayudar a la sociedad?"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 3 -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('brain_gym')">
+        <div class="title">🧠 Actividad 3: Brain Gym ⏰ Tiempo: 8 minutos</div>
+        <div class="subtitle">Ejercitar la mente aprendiendo sobre secuencias y bucles.</div>
+    </div>
+    <div id="brain_gym" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 9: Anunciar la actividad Brain Gym y crear entusiasmo por el contenido.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios! Hoy vamos a ejercitar nuestras mentes aprendiendo sobre las secuencias y bucles que usamos en programación, ¡y cómo nos ayudan en Minecraft! Además, escondí un Easter Egg en la explicación. ¡Presten atención y podrían ganar Mon-e extra!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 10: Explicar el concepto de secuencia con ejemplos cotidianos (hacer un sándwich y vestirse).</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¿Alguna vez hicieron un sándwich, Genios? ¡Si no siguen la secuencia correcta, acaban con un desastre de mermelada y mantequilla de maní por todas partes! Las secuencias nos ayudan a hacer las cosas en el orden correcto. Lo mismo pasa cuando programamos."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Proyectar Diapositiva 11: Explicar cómo en Minecraft se siguen secuencias de pasos para mover a Alex o Steve.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "En Minecraft, Alex o Steve también siguen secuencias. Por ejemplo, para que Alex llegue a un cofre, tiene que ir hacia adelante, girar si es necesario, y seguir los pasos en el orden correcto. ¡Sin secuencias, estaríamos perdidos!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 12: Guiar a los estudiantes a través de un ejemplo en el que Alex sigue una secuencia para alcanzar un objetivo en el juego.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a ver un ejemplo en Minecraft. Queremos que Alex llegue hasta un cofre. Primero ponemos el bloque de 'avanzar', luego repetimos ese bloque, y finalmente giramos a la izquierda. ¡Así Alex llega al cofre siguiendo la secuencia!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (1 minuto):</strong> Proyectar Diapositiva 13: Introducir el concepto de bucles con ejemplos cotidianos (saltar la cuerda).</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios! Ahora hablemos de los bucles. Imagina que estás saltando la cuerda. No tienes que decir 'salta, salta, salta' cada vez. Solo dices 'voy a saltar 5 veces', ¡y eso es un bucle! Así repetimos las acciones sin tanto esfuerzo."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 6 (1 minuto):</strong> Proyectar Diapositiva 14: Explicar cómo los bucles ayudan a repetir acciones en Minecraft sin tener que repetir bloques manualmente.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "En Minecraft, si queremos que Alex vaya hacia adelante muchas veces, en lugar de poner el bloque 'Avanzar' una y otra vez, usamos un bucle. Con un solo bloque, le decimos que lo repita 3 veces. ¡Así de fácil!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 7 (1 minuto):</strong> Proyectar Diapositiva 15: Guiar a los estudiantes a través de un ejemplo en el que Alex usa un bucle para llegar a su destino.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Supongamos que Alex necesita ir 3 veces hacia adelante para llegar a una cueva. En lugar de poner 3 bloques de 'avanzar', usamos un bucle y le decimos que lo haga 3 veces. ¡Es como magia de la programación!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 8 (1 minuto):</strong> Proyectar Diapositiva 16: Guiar a los estudiantes en una reflexión sobre cómo las secuencias y los bucles simplifican tareas en el juego y en la vida.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Las secuencias nos ayudan a seguir el orden correcto y los bucles nos permiten repetir sin esfuerzo. ¿En qué situaciones de la vida creen que podrían usar un bucle o una secuencia? ¡Todo es más fácil con ellos!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 9 (0,5 minutos):</strong> Proyectar Diapositiva 17: Revisar los objetivos de la clase y qué han logrado los estudiantes.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Genios, ¡lo hicieron increíble! Hoy aprendimos sobre secuencias y bucles. Ahora sabemos que, con un buen orden y repitiendo inteligentemente, podemos lograr grandes cosas, ¡como en Minecraft! ¡Muy bien, equipo!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 4 -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('brain_vitamin')">
+        <div class="title">🧠 Actividad 4: Brain Vitamin ⏰ Tiempo: 2,5 minutos</div>
+        <div class="subtitle">Ejercicio mental para preparar los cerebros para programar.</div>
+    </div>
+    <div id="brain_vitamin" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 18: Explicar que harán un ejercicio corto que ayudará a que sus cerebros estén listos para programar.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, vamos a activar nuestras mentes para el siguiente reto! Vamos a hacer un ejercicio rápido que ayudará a nuestras neuronas a prepararse para trabajar con secuencias. ¡Sigan mis instrucciones!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 19: Guiar a los estudiantes a seguir una serie de instrucciones rápidas que involucren movimientos cruzados y secuencias simples.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Vamos a movernos un poco, pero esta vez con un reto mental. Cuando diga 'derecha', levanten la mano izquierda. Cuando diga 'izquierda', levanten la mano derecha. ¡Vamos a ver si su cerebro puede seguir esta secuencia rápida!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Sin diapositiva: Explicar que este ejercicio ayuda a sus cerebros a seguir instrucciones precisas, justo como lo harán al programar.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genial, Genios! Este ejercicio no solo es divertido, sino que también ayuda a que su cerebro siga instrucciones en el orden correcto, tal como cuando programamos. ¡Ahora estamos listos para seguir con la programación!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 5 -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team_gnius')">
+        <div class="title">🤝 Actividad 5: Team Gnius ⏰ Tiempo: 2,5 minutos</div>
+        <div class="subtitle">Formación de equipos y colaboración para el desafío.</div>
+    </div>
+    <div id="team_gnius" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 20: Explicar la formación de equipos y la importancia de colaborar.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, es hora de trabajar juntos! Formaremos equipos de 2 personas para el desafío, pero cada uno usará su propia Magic Tablet. Uno será el Programador Principal y el otro será el Asistente de Programación. ¡Cada uno aportará su parte para que el equipo triunfe!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0,5 minutos):</strong> Proyectar Diapositiva 21: Mostrar un temporizador de 30 segundos para que los estudiantes se organicen en equipos.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Tienen 30 segundos para encontrar a su compañero. ¡Elijan sabiamente, Genios! Aunque usaremos nuestras propias Magic Tablets, ¡trabajar en equipo será clave para resolver el desafío!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0,5 minutos):</strong> Proyectar Diapositiva 22: Recordar que cada alumno usará su propia Magic Tablet para el reto.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Cada uno de ustedes usará su Magic Tablet para realizar el desafío. La clave es que colaboren y se ayuden mutuamente, pero ¡cada uno aportará desde su propia tablet!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (0,5 minutos):</strong> Proyectar Diapositiva 23: Mostrar un temporizador de 30 segundos para que todos los estudiantes tengan sus tablets listas para el desafío.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Tienen 30 segundos para asegurarse de que sus Magic Tablets están listas. ¡Asegúrense de que están conectadas y listas para el reto!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (0,5 minutos):</strong> Sin diapositiva: Explicar la importancia de la comunicación y el trabajo en equipo durante el desafío.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, ahora que tienen todo listo, recuerden que la colaboración es la clave! Aunque cada uno usará su propia tablet, trabajarán como equipo para decidir las mejores estrategias. ¡Colaborar nos hará invencibles!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 6 -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">⚙️ Actividad 6: Challenge ⏰ Tiempo: 25,5 minutos</div>
+        <div class="subtitle">Realizar un desafío de programación con diferentes niveles de dificultad.</div>
+    </div>
+    <div id="challenge" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (1 minuto):</strong> Proyectar Diapositiva 24: Presentar la portada de "Challenge" y anunciar que los estudiantes enfrentarán uno de los tres niveles de dificultad.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, ha llegado el momento del desafío! Hoy tendremos 3 diferentes retos: ROOKIE, MASTER, y HACKER. Cada uno tiene un nivel de dificultad diferente, y ustedes podrán elegir el reto que más les guste. ¡Prepárense para programar como verdaderos genios!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (1 minuto):</strong> Proyectar Diapositiva 25: Presentar los tres niveles de desafío y sus descripciones para que los estudiantes elijan el nivel que prefieran.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Aquí están los tres desafíos: ROOKIE, donde escribirán instrucciones sencillas para moverse por el salón; MASTER, donde usarán bucles para optimizar sus pasos; y HACKER, donde escribirán secuencias largas y avanzadas usando varios bucles. ¡Elijan el nivel que prefieran y vamos a comenzar!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (10 minutos):</strong> Proyectar Diapositiva 26: Explicar que los estudiantes usarán Magic Tablets para escribir sus instrucciones paso a paso antes de ejecutarlas.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora que han elegido su desafío, escribirán cada paso de su secuencia en su Magic Tablet. Este proceso se llama paper programming, donde planificamos todos los pasos antes de llevarlos a la computadora. ¡Es como programar en papel!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (0,5 minutos):</strong> Explicar que intercambiarán sus tablets con sus compañeros para que sigan las instrucciones.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Cuando terminen, intercambien sus tablets con su compañero. Ellos seguirán las instrucciones que ustedes escribieron, ¡así sabremos si su secuencia está clara y bien escrita!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 5 (10 minutos):</strong> Proyectar Diapositiva 27: Los estudiantes ejecutan las instrucciones de su compañero usando las Magic Tablets.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora, sigan las instrucciones que su compañero escribió. Lean paso a paso y asegúrense de ejecutar cada acción correctamente. ¡Vamos a ver qué tan claras y precisas fueron las secuencias!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 6 (3 minutos):</strong> Proyectar Diapositiva 28: Revisar los resultados del desafío y reflexionar sobre la importancia de escribir secuencias claras.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Increíble trabajo, Genios! Ahora, reflexionemos sobre cómo les fue. ¿Las instrucciones fueron claras? ¿Los bucles ayudaron a hacer las secuencias más eficientes? ¡Compartamos nuestras experiencias!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 7 -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter_egg')">
+        <div class="title">🥚 Actividad 7: Easter Egg ⏰ Tiempo: 3 minutos</div>
+        <div class="subtitle">Descubrir el reto oculto relacionado con los bucles.</div>
+    </div>
+    <div id="easter_egg" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 29: Anunciar que el Easter Egg ha llegado y motivar a los estudiantes a descubrirlo.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, llegó el momento que todos estábamos esperando! ¿Recuerdan que les mencioné un Easter Egg oculto? Bueno, ¡aquí está! Vamos a ver quiénes prestaron atención y están listos para el reto sorpresa."</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0,5 minutos):</strong> Proyectar Diapositiva 30: Mostrar la pregunta del Easter Egg: "¿Para qué sirve un bucle?".</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Ahora, Genios, les toca descubrir el reto oculto: la pregunta es… ¿Para qué sirve un bucle? ¡Tómense unos segundos para pensarlo, y luego lo discutimos juntos!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (1 minuto):</strong> Sin diapositiva: Los estudiantes piensan en la respuesta y algunos de ellos se acercan para compartirla con el profesor.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Voy a elegir a tres de ustedes para que me den su respuesta en voz baja. ¿Listos? ¡Veamos quién tiene clara la función de los bucles!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (1 minuto):</strong> Proyectar Diapositiva 31: Anunciar la respuesta correcta y premiar a los que acertaron.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡La respuesta correcta es… Los bucles nos ayudan a repetir acciones sin tener que escribirlas una y otra vez! ¡Felicidades a los que respondieron bien! ¡Ganan Mon-e extra!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 8 -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor_dojo')">
+        <div class="title">🏅 Actividad 8: Honor de Dojo ⏰ Tiempo: 5 minutos</div>
+        <div class="subtitle">Reflexionar sobre los logros de la clase y cerrar con agradecimientos.</div>
+    </div>
+    <div id="honor_dojo" class="content">
+        <table>
+            <tr>
+                <td><strong>PASO 1 (0,5 minutos):</strong> Proyectar Diapositiva 32: Revisar los tres objetivos principales de la clase y cómo se han cumplido.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Genios, antes de despedirnos, vamos a revisar los logros del día! Hoy aprendimos a escribir secuencias y usamos bucles para optimizar nuestros movimientos. ¡Gran trabajo, equipo!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 2 (0,5 minutos):</strong> Sin diapositiva: Agradecer el esfuerzo de todo el grupo por trabajar juntos en los desafíos.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy, todo el grupo ha hecho un gran esfuerzo en los tres niveles del desafío. ¡Cada uno de ustedes ha contribuido con su genio! ¡Felicidades por su trabajo en equipo!"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 3 (0,5 minutos):</strong> Proyectar Diapositiva 33: Guiar a los estudiantes en una breve reflexión sobre el aprendizaje de la clase.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "Hoy aprendimos que los bucles y las secuencias son clave para programar de manera eficiente. ¿Qué les sorprendió más de trabajar con bucles? ¿Cómo creen que podrían usarlos en otros proyectos?"</td>
+            </tr>
+            <tr>
+                <td><strong>PASO 4 (3 minutos):</strong> Proyectar Diapositiva 34: Recordar a los estudiantes que deben recoger el salón antes de finalizar la clase.</td>
+                <td><strong>DIÁLOGO SUGERIDO:</strong> "¡Y como siempre, Genios, vamos a honrar nuestro espacio! Recojan sus tablets y materiales. ¡Dejemos el salón tan limpio como nuestros códigos deben ser!"</td>
+            </tr>
+        </table>
+    </div>
+</div>
+    </div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+</body>
+</html>
